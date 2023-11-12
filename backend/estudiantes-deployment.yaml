@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: estudiantes-deployment
+spec:
+  replicas: 1  # Ajusta el número de réplicas según sea necesario
+  selector:
+    matchLabels:
+      app: estudiantes
+  template:
+    metadata:
+      labels:
+        app: estudiantes
+    spec:
+      containers:
+        - name: estudiantes
+          image: tu-repositorio/tu-imagen-de-estudiantes:etiqueta
+          ports:
+            - containerPort: 3000  # Puerto en el que escucha tu aplicación

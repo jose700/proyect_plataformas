@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  estudiantes:
+    build: ./services/estudiantes
+
+  historial-academico:
+    build: ./services/historial-academico
+
+  historial-medico:
+    build: ./services/historial-medico
+
+  representantes:
+    build: ./services/representantes
+
+  aprobadas:
+    build: ./services/segumientos-academicos/aprobada-service
+  asignaturas:
+    build: ./services/segumientos-academicos/asignatura-service
+  reprobadas:
+    build: ./services/segumientos-academicos/reprobada-service
+
+  consultas:
+    build: ./services/segumientos-medicos/consulta-service
+  cumplidos:
+    build: ./services/segumientos-medicos/cumplido-service
+  nocumplidos:
+    build: ./services/segumientos-medicos/nocumplido-service
+
+  login:
+    build: ./services/tutores/login-service
+
+  register:
+    build: ./services/tutores/register-service
+
+  api:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      - PORT=3000
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: capacidades_especiales
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "5432:5432"
+    environment:
+      DATABASE_HOST: postgres
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: capacidades_especiales
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - estudiantes
+      - historial-academico
+      - historial-medico
+      - representantes
+      - aprobadas
+      - asignaturas
+      - reprobadas
+      - consultas
+      - cumplidos
+      - nocumplidos
+      - login
+      - register
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin1234"
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres

@@ -1,0 +1,92 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Tratamiento medico</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="" [formGroup]="trataForm"  (ngSubmit)="crearTratamiento()">
+                        <div class="form-group">
+                            <select  class="form-select form-select-sm" formControlName="idEstudiante" >
+                                <option value="">Seleccione estudiante</option>
+                                <option *ngFor="let es of estudiantes" value="{{es.idestudiante}}" >{{es.nombres}} {{es.apellidos}} {{es.cedula}}</option>
+                              </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" formControlName="clasediscapacidad"  class="form-control" placeholder="Clase de discapacidad"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" formControlName="descripcionconsulta"  class="form-control" placeholder="Descripcion de consulta"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Fecha consulta</label>
+                            <input type="date" formControlName="fechaconsulta" class="form-control" placeholder="Fecha de consulta"
+                                required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" formControlName="opinionpaciente" class="form-control"  placeholder="opinion del paciente"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" formControlName="tratamientopsicologico"  class="form-control"  placeholder="Tratamiento psicologico"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" formControlName="tratamientofisico" class="form-control" placeholder="Tratamiento fisico"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <img src="./assets/save.png" height="20px" alt="Guardar">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <form class="d-flex" role="search" (ngSubmit)="buscar()">
+              <input class="form-control me-2"  [(ngModel)]="nombres" [ngModelOptions]="{standalone: true}" type="text" placeholder="Filtrar por nombre de estudiante" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit"><img src="./assets/lupa.png" height="20px" alt=""></button>
+            </form>
+            <h1>Listado de consultas para tratamientos</h1>
+            <div class="table-responsive py-2">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 10%;">Discapacidad</th>
+                    <th style="width: 15%;">Estudiante</th>
+                    <th style="width: 15%;">T.psicológico</th>
+                    <th style="width: 15%;">T.físico</th>
+                    <th style="width: 20%;">Descr.consulta</th>
+                    <th style="width: 15%;">Op.paciente</th>
+                    <th style="width: 10%;">Fech.consulta</th>
+                    <th style="width: 5%;" colspan="2">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tra of tratamientos">
+                    <td>{{tra.clasediscapacidad}}</td>
+                    <td>{{tra.estudiante}}</td>
+                    <td>{{tra.tratamientopsicologico}}</td>
+                    <td>{{tra.tratamientofisico}}</td>
+                    <td>{{tra.descripcionconsulta}}</td>
+                    <td>{{tra.opinionpaciente}}</td>
+                    <td>{{tra.fechaconsulta}}</td>
+                    <td><a (click)="eliminarTratamiento(tra.idtratamiento)" class="btn"><img src="./assets/delete.png" height="20px" alt=""></a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          

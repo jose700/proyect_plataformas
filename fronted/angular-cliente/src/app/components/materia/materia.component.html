@@ -1,0 +1,92 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Materias</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method=""   [formGroup]="materiaForm" (ngSubmit)="crearMateria()">
+                        <div class="form-group">
+                            <select  class="form-select form-select-sm" formControlName="idEstudiante">
+                                <option value="">Seleccione estudiante</option>
+                                <option *ngFor="let es of estudiantes" value="{{es.idestudiante}}" >{{es.nombres}} {{es.cedula}}</option>
+                              </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" placeholder="Nombre"
+                            formControlName="nombre" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" placeholder="Facultad"
+                            formControlName="facultad" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="carrera" placeholder="Carrera"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="nivel" placeholder="Nivel"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="paralelo" placeholder="Paralelo"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="jornada" placeholder="Jornada"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <img src="./assets/save.png" height="20px" alt="Guardar">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <form class="d-flex" role="search" (ngSubmit)="buscar()">
+                <input class="form-control me-2"[(ngModel)]="cedula" [ngModelOptions]="{standalone: true}" type="text" placeholder="Filtrar por cedula" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit"><img src="./assets/lupa.png" height="20px" alt=""></button>
+              </form>
+            <h1>Listado de materias por cada estudiante</h1>
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>Materia</th>
+                            <th>Facultad</th>
+                            <th>Carrera</th>
+                            <th>Nivel</th>
+                            <th>paralelo</th>
+                            <th>Jornada</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ma of materias">
+                            <td>{{ma.nombres}}</td>
+                            <td>{{ma.nombre}}</td>
+                            <td>{{ma.facultad}}</td>
+                            <td>{{ma.carrera}}</td>
+                            <td>{{ma.nivel}}</td>
+                            <td>{{ma.paralelo}}</td>
+                            <td>{{ma.jornada}}</td>
+                            <td><a (click)="eliminarMateria(ma.idmateria)" class="btn"><img src="./assets/delete.png" height="20px" alt=""></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    

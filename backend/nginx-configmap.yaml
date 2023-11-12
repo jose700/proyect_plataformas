@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx.conf: |
+    # Contenido de tu archivo nginx.conf
+    server {
+        listen 80;
+        location /api/v2/estudiantes {
+            proxy_pass http://estudiantes-service;
+        }
+        location /api/v2/historial-academico {
+            proxy_pass http://historial-academico-service;
+        }
+        location /api/v2/historial-medico {
+            proxy_pass http://historial-medico-service;
+        }
+        location /api/v2/representantes {
+            proxy_pass http://representantes-service;
+        }
+        location /api/v2/aprobadas {
+            proxy_pass http://aprobadas-service;
+        }
+        location /api/v2/asignaturas {
+            proxy_pass http://asignatura-service;
+        }
+        location /api/v2/reprobadas {
+            proxy_pass http://reprobada-service;
+        }
+        location /api/v2/consultas {
+            proxy_pass http://consulta-service;
+        }
+        location /api/v2/cumplidos {
+            proxy_pass http://cumplido-service;
+        }
+        location /api/v2/nocumplidos {
+            proxy_pass http://nocumplido-service;
+        }
+        location /api/v2/login {
+            proxy_pass http://login-service;
+        }
+        location /api/v2/register {
+            proxy_pass http://register-service;
+        }
+     
+    }

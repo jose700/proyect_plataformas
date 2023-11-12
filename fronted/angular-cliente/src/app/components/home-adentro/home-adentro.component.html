@@ -1,0 +1,13 @@
+<div class="row my-4 text-center bg-light">
+  <div *ngFor="let sec of secciones" class="col-md-4 p-4">
+    <div class="card bg-light card-project">
+      <div class="container-fluid py-2">
+      <div class="card-body">
+        <h2>{{sec.titulo}}</h2>
+        <a href="{{sec.url}}"><img src="{{sec.imagen}}" alt="" height="100px"></a>
+        <p></p>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

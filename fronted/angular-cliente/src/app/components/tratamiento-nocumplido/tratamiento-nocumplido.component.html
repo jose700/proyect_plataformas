@@ -1,0 +1,57 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Tratamientos no cumplidos</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="" [formGroup]="nocumplidoForm"   (ngSubmit)="crearNocumplido()">
+                        <div class="form-group">
+                            <select  class="form-select form-select-sm" formControlName="idTratamiento" >
+                                <option value="">Seleccione tratamiento</option>
+                                <option *ngFor="let es of tratamientos" value="{{es.idtratamiento}}" >{{es.estudiante}} {{es.ci}}
+                                     {{es.tratamientopsicologico}} {{es.tratamientofisico}}
+                                </option>
+                              </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="observacion" placeholder="Observacion"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <img src="./assets/save.png" height="20px" alt="Guardar">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h1>Listado de tratamientos que no se cumplieron</h1>
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>Tratamiento no cumplido</th>
+                            <th>Observacion</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let nocum of nocumplidos" >
+                            <td>{{nocum.nombres}} {{nocum.cedula}}</td>
+                            <td>{{nocum.tratamientopsicologico}} 
+                                {{nocum.tratamientofisico}}</td>
+                            <td>{{nocum.observacion}}</td>
+                            <td><a (click)="eliminarNocumplido(nocum.idnocumplido)" class="btn"><img src="./assets/delete.png" height="20px" alt=""></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

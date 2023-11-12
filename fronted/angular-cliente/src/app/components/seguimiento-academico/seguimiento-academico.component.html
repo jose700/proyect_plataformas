@@ -1,0 +1,13 @@
+<div class="row my-4 text-center bg-light">
+    <div *ngFor="let aca of academicos" class="col-md-4 p-4">
+      <div class="card bg-light card-project">
+        <div class="container-fluid py-2">
+        <div class="card-body">
+          <h2>{{aca.titulo}}</h2>
+          <a href="{{aca.url}}"><img src="{{aca.imagen}}" alt="" height="100px"></a>
+          <p></p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

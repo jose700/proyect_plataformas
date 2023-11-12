@@ -1,0 +1,13 @@
+<div class="row my-4 text-center bg-light">
+    <div *ngFor="let tra of tratamientos" class="col-md-4 p-4">
+      <div class="card bg-light card-project">
+        <div class="container-fluid py-2">
+        <div class="card-body">
+          <h2>{{tra.titulo}}</h2>
+          <a href="{{tra.url}}"><img src="{{tra.imagen}}" alt="" height="100px"></a>
+          <p></p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

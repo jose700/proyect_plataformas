@@ -1,0 +1,84 @@
+<style>    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 80%;
+        max-width: 400px;
+    }
+    
+    h2 {
+        text-align: center;
+    }
+
+    .form-container, img{
+        text-align: center;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    label {
+        font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #3e8e41;
+    }
+    
+    .register-link,
+    .login-link {
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    .hidden {
+        display: none;
+    }
+</style>
+<br>
+<br><br>
+<div class="container">
+ 
+    <div class="form-container">
+ <form class="login-form" [formGroup]="tutorForm" (ngSubmit)="crearTutor()">
+  <h2>Crear Cuenta</h2>
+  <input type="text" formControlName="nombres" placeholder="Ingrese sus nombres" required>
+  <input type="text" formControlName="apellidos" placeholder="Ingrese sus apellidos" required>
+  <input type="text" formControlName="cedula" placeholder="Ingrese su numero de cédula" required>
+  <input type="text" formControlName="correo" placeholder="Ingrese su correo electrónico" required>
+  <input type="text" formControlName="usuario" placeholder="Ingrese su nombre de usuario" required>
+  <input type="password" formControlName="pass" placeholder="Ingrese su contraseña" required>
+  <input type="submit" value="Terminar">
+</form>
+             
+    </div>
+</div>

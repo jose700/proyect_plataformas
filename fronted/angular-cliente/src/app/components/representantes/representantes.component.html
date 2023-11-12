@@ -1,0 +1,92 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Representantes</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="" [formGroup]="repreForm"   (ngSubmit)="crearRepresentante()">
+                        <div class="form-group">
+                            <select class="form-select form-select-sm" formControlName="idEstudiante">
+                                <option value="">Seleccione representado</option>
+                                 <option *ngFor="let es of estudiantes" value="{{es.idestudiante}}">{{es.nombres}} {{es.apellidos}} {{es.cedula}}</option>
+                               </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" placeholder="Nombres"
+                            formControlName="nombres"  required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" placeholder="Apellidos"
+                            formControlName="apellidos"  required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="cedula"  placeholder="Cedula"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="correo"  placeholder="Correo"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="estadocivil"  placeholder="Estado civil"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="ocupacion"  placeholder="Ocupacion"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <img src="./assets/save.png" height="20px" alt="Guardar">
+                                Guardar
+                            </button>
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <form class="d-flex" role="search" (ngSubmit)="buscar()">
+                <input class="form-control me-2"  [(ngModel)]="cedula" [ngModelOptions]="{standalone: true}" type="text" placeholder="Filtrar por cedula" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit"><img src="./assets/lupa.png" height="20px" alt=""></button>
+              </form>
+            <h1>Listado de representantes</h1>
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Representado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Cedula</th>
+                            <th>Ocupacion</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let re of representantes" >
+                            <td>{{re.representado}}</td>
+                            <td>{{re.nombres}}</td>
+                            <td>{{re.apellidos}}</td>
+                            <td>{{re.cedula}}</td>
+                            <td>{{re.ocupacion}}</td>
+                            <td><a (click)="eliminarRepresentante(re.idrepresentante)" class="btn"><img src="./assets/delete.png" height="20px" alt=""></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="busquedaRealizada && representantes.length === 0" class="alert alert-danger mt-3">
+                    No se encontraron resultados en la búsqueda.
+                  </div>
+            </div>
+        </div>
+    </div>
+    

@@ -1,0 +1,75 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Tratamientos cumplidos</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="" [formGroup]="cumplidoForm"   (ngSubmit)="crearCumplido()">
+                        <div class="form-group">
+                            <select  class="form-select form-select-sm" formControlName="idTratamiento">
+                                <option value="">Seleccione tratamiento</option>
+                                <option *ngFor="let es of tratamientos" value="{{es.idtratamiento}}" >{{es.estudiante}} {{es.ci}} {{es.tratamientopsicologico}} {{es.tratamientofisico}}</option>
+                              </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" formControlName="observacion" placeholder="Observacion"
+                                maxlength="50" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Fecha inicio:</label>
+                            <input type="date"  class="form-control" formControlName="fechainicio"  placeholder="Fecha de inicio"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Fecha fin:</label>
+                            <input type="date"  class="form-control" formControlName="fechafin" placeholder="Fecha de terminacion"
+                                 required>
+                        </div>
+                        <br>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <img src="./assets/save.png" height="20px" alt="Guardar">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <form class="d-flex" role="search" (ngSubmit)="buscar()">
+                <input class="form-control me-2"  type="text"  [(ngModel)]="cedula" [ngModelOptions]="{standalone: true}" type="text" placeholder="Filtrar por cedula" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit"><img src="./assets/lupa.png" height="20px" alt=""></button>
+              </form>
+            <h1>Listado de tratamientos cumplidos</h1>
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>T.cumplido</th>
+                            <th>Observacion</th>
+                            <th>Fech. inicio</th>
+                            <th>Fech. fin</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cum of cumplidos" >
+                            <td>{{cum.estudiante}} {{cum.ci}}</td>
+                            <td>{{cum.tratamientopsicologico}},
+                                {{cum.tratamientofisico}}</td>
+                            <td>{{cum.observacion}}</td>
+                            <td>{{cum.fechainicio}}</td>
+                            <td>{{cum.fechafin}}</td>
+                            <td><a (click)="eliminarCumplido(cum.idcumplido)"  class="btn"><img src="./assets/delete.png" height="20px" alt=""></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <br><br>
+    <form action="" method="" class="d-flex" role="search" (ngSubmit)="buscar()">
+      <input class="form-control me-2"  name="" type="text" [(ngModel)]="cedula" [ngModelOptions]="{standalone: true}"  placeholder="Buscar por cedula" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit"><img src="./assets/lupa2.png" alt="" height="25px"></button>
+    </form>
+  </div>
+
+  <div class="row my-4 text-center" >
+    <div *ngFor="let hi of academicos" class="col-md-4 p-4" >
+      <div class="card card-project " style="background-color: rgb(214, 214, 127);">
+        <div class="container-fluid py-2">
+        <div class="card-body">
+          <h2 class="card-title"><b>Estudiante:</b> {{hi.nombres}}</h2>
+          <h3><b>Cedula:</b> {{hi.cedula}}</h3>
+          <h3><b>Correo institucional:</b> {{hi.correo}}</h3>
+          <h3><b>Discapacidad:</b> {{hi.clasediscapacidad}}</h3>
+          <h3><b>Facultad:</b> {{hi.facultad}}</h3>
+          <h3><b>Carrera:</b> {{hi.carrera}}</h3>
+          <h3><b>Nivel:</b> {{hi.nivel}}</h3>
+          <h3><b>Paralelo:</b> {{hi.paralelo}}</h3>
+          <h3><b>Jornada:</b> {{hi.jornada}}</h3>
+          <h3><b>Materia:</b> {{hi.nombre}}</h3>
+          <h3><b>Promedio final:</b> {{hi.promediofinal}}</h3>
+          <h3><b>Observacion:</b> {{hi.observacion}}</h3>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

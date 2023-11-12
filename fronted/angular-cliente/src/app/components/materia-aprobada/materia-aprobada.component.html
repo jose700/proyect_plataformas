@@ -1,0 +1,66 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Materias aprobadas</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method=""  [formGroup]="aprobadaForm" (ngSubmit)="crearAprobada()">
+                        <div class="form-group">
+                            <select  class="form-select form-select-sm" formControlName="idMateria">
+                                <option value="">Seleccione materia</option>
+                                <option *ngFor="let es of materias" value="{{es.idmateria}}" >{{es.nombres}}
+                                    {{es.cedula}} {{es.nombre}}</option>
+                              </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" placeholder="Observacion"
+                            formControlName="observacion" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text"  class="form-control" placeholder="Promedio final"
+                            formControlName="promediofinal" required>
+                        </div>
+                        <br>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <img src="./assets/save.png" height="20px" alt="Guardar">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <form class="d-flex" role="search" (ngSubmit)="buscar()">
+                <input class="form-control me-2" type="text" [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}" placeholder="Filtrar por materia" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit"><img src="./assets/lupa.png" height="20px" alt=""></button>
+              </form>
+            <h1>Listado de materias aprobadas</h1>
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Materia</th>
+                            <th>Estudiante</th>
+                            <th>Promedio final</th>
+                            <th>Observacion</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ap of aprobadas">
+                            <td>{{ap.nombre}}</td>
+                            <td>{{ap.nombres}} {{ap.cedula}}</td>
+                            <td>{{ap.promediofinal}}</td>
+                            <td>{{ap.observacion}}</td>
+                            <td><a (click)="eliminarAprobada(ap.idaprobada)" class="btn"><img src="./assets/delete.png" height="20px" alt=""></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
