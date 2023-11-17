@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consultas-deployment
+spec:
+  replicas: 1  # Ajusta el número de réplicas según sea necesario
+  selector:
+    matchLabels:
+      app: consultas
+  template:
+    metadata:
+      labels:
+        app: consultas
+    spec:
+      containers:
+        - name: consultas
+          image: tu-repositorio/consultas:etiqueta
+          ports:
+            - containerPort: 3000  # Puerto en el que escucha tu aplicación

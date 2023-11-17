@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asignaturas-deployment
+spec:
+  replicas: 1  # Ajusta el número de réplicas según sea necesario
+  selector:
+    matchLabels:
+      app: asignaturas
+  template:
+    metadata:
+      labels:
+        app: asignaturas
+    spec:
+      containers:
+        - name: asignaturas
+          image: tu-repositorio/asignaturas:etiqueta
+          ports:
+            - containerPort: 3000  # Puerto en el que escucha tu aplicación
