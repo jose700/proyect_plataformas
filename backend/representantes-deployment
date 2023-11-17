@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: representantes-deployment
+spec:
+  replicas: 1  # Ajusta el número de réplicas según sea necesario
+  selector:
+    matchLabels:
+      app: representantes
+  template:
+    metadata:
+      labels:
+        app: representantes
+    spec:
+      containers:
+        - name: representantes
+          image: tu-repositorio/tu-imagen-de-representantes:etiqueta
+          ports:
+            - containerPort: 3000  # Puerto en el que escucha tu aplicación
