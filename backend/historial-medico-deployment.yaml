@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: historial-medico-deployment
+spec:
+  replicas: 1  # Ajusta el número de réplicas según sea necesario
+  selector:
+    matchLabels:
+      app: historial-medico
+  template:
+    metadata:
+      labels:
+        app: historial-medico
+    spec:
+      containers:
+        - name: historial-medico
+          image: tu-repositorio/historial-medico:etiqueta
+          ports:
+            - containerPort: 3000  # Puerto en el que escucha tu aplicación
