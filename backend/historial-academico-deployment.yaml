@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: historial-academico-deployment
+spec:
+  replicas: 1  # Ajusta el número de réplicas según sea necesario
+  selector:
+    matchLabels:
+      app: historial-academico
+  template:
+    metadata:
+      labels:
+        app: historial-academico
+    spec:
+      containers:
+        - name: historial-academico
+          image: tu-repositorio/historial-academico:etiqueta
+          ports:
+            - containerPort: 3000  # Puerto en el que escucha tu aplicación
