@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login-deployment
+spec:
+  replicas: 1  # Ajusta el número de réplicas según sea necesario
+  selector:
+    matchLabels:
+      app: login
+  template:
+    metadata:
+      labels:
+        app: login
+    spec:
+      containers:
+        - name: login
+          image: tu-repositorio/login:etiqueta
+          ports:
+            - containerPort: 3000  # Puerto en el que escucha tu aplicación
